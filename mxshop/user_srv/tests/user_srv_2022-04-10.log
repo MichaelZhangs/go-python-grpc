@@ -1,0 +1,14 @@
+2022-04-10 11:43:28.226 | INFO     | user_srv.logs.my_log:info:15 - 10
+2022-04-10 11:47:29.134 | INFO     | user_srv.logs.my_log:info:15 - 查询总数: 10
+2022-04-10 11:48:38.893 | INFO     | __main__:user_list:14 - 查询总数: 10
+2022-04-10 11:48:38.893 | INFO     | __main__:user_list:14 - 查询总数: 10
+2022-04-10 11:48:51.600 | INFO     | __main__:user_list:14 - 查询总数: 10
+2022-04-10 11:48:51.600 | INFO     | __main__:user_list:14 - 查询总数: 10
+2022-04-10 11:49:11.243 | INFO     | __main__:user_list:14 - 查询总数: 10
+
+2022-04-10 11:49:11.243 | INFO     | __main__:user_list:14 - 查询总数: 10
+
+2022-04-10 11:54:41.748 | INFO     | user_srv.logs.my_log:info:15 - 10
+2022-04-10 11:54:44.355 | INFO     | user_srv.logs.my_log:info:15 - 10
+2022-04-10 11:54:45.861 | INFO     | user_srv.logs.my_log:info:15 - 10
+2022-04-10 11:54:47.156 | INFO     | user_srv.logs.my_log:info:15 - 10

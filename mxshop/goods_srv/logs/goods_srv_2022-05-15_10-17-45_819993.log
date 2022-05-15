@@ -1,0 +1,281 @@
+2022-05-15 10:17:45.834 | INFO     | __main__:serve:85 - 商品启动服务: 127.0.0.1:49457
+2022-05-15 10:17:45.837 | INFO     | __main__:serve:88 - 商品服务注册开始
+2022-05-15 10:17:45.837 | INFO     | __main__:serve:95 - 商品服务注册成功
+2022-05-15 10:20:10.929 | ERROR    | grpc._server:_call_behavior:443 - An error has been caught in function '_call_behavior', process 'MainProcess' (16936), thread 'ThreadPoolExecutor-0_0' (11352):
+Traceback (most recent call last):
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\peewee.py", line 3177, in execute_sql
+    cursor.execute(sql, params or ())
+    │      │       │    └ [False, 50.0]
+    │      │       └ 'SELECT COUNT(1) FROM (SELECT 1 FROM `goods` AS `t1` WHERE ((`t1`.`is_deleted` = %s) AND (`t1`.`shop_price` >= %s))) AS `_wra...
+    │      └ <function Cursor.execute at 0x0000021CA86F5D08>
+    └ <pymysql.cursors.Cursor object at 0x0000021CA8C8F6A0>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\pymysql\cursors.py", line 163, in execute
+    result = self._query(query)
+             │    │      └ 'SELECT COUNT(1) FROM (SELECT 1 FROM `goods` AS `t1` WHERE ((`t1`.`is_deleted` = 0) AND (`t1`.`shop_price` >= 50.0e0))) AS `_...
+             │    └ <function Cursor._query at 0x0000021CA870C1E0>
+             └ <pymysql.cursors.Cursor object at 0x0000021CA8C8F6A0>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\pymysql\cursors.py", line 321, in _query
+    conn.query(q)
+    │    │     └ 'SELECT COUNT(1) FROM (SELECT 1 FROM `goods` AS `t1` WHERE ((`t1`.`is_deleted` = 0) AND (`t1`.`shop_price` >= 50.0e0))) AS `_...
+    │    └ <function Connection.query at 0x0000021CA8736510>
+    └ <pymysql.connections.Connection object at 0x0000021CA8B6CC50>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\pymysql\connections.py", line 505, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+    │    │                │    │                             └ False
+    │    │                │    └ <function Connection._read_query_result at 0x0000021CA8736AE8>
+    │    │                └ <pymysql.connections.Connection object at 0x0000021CA8B6CC50>
+    │    └ 0
+    └ <pymysql.connections.Connection object at 0x0000021CA8B6CC50>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\pymysql\connections.py", line 724, in _read_query_result
+    result.read()
+    │      └ <function MySQLResult.read at 0x0000021CA87372F0>
+    └ <pymysql.connections.MySQLResult object at 0x0000021CA8C8F7F0>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\pymysql\connections.py", line 1069, in read
+    first_packet = self.connection._read_packet()
+                   │    └ None
+                   └ <pymysql.connections.MySQLResult object at 0x0000021CA8C8F7F0>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\pymysql\connections.py", line 676, in _read_packet
+    packet.raise_for_error()
+    │      └ <function MysqlPacket.raise_for_error at 0x0000021CA8722E18>
+    └ <pymysql.protocol.MysqlPacket object at 0x0000021CA8C8F748>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\pymysql\protocol.py", line 223, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    │   │                     │    └ <member '_data' of 'MysqlPacket' objects>
+    │   │                     └ <pymysql.protocol.MysqlPacket object at 0x0000021CA8C8F748>
+    │   └ <function raise_mysql_exception at 0x0000021CA848F6A8>
+    └ <module 'pymysql.err' from 'C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python37\\lib\\site-packages\\pymysql\\err.py'>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\pymysql\err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+          │          │      └ "Table 'mxshop-srv-goods.goods' doesn't exist"
+          │          └ 1146
+          └ <class 'pymysql.err.ProgrammingError'>
+
+pymysql.err.ProgrammingError: (1146, "Table 'mxshop-srv-goods.goods' doesn't exist")
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\threading.py", line 885, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x0000021CA09926A8>
+    └ <Thread(ThreadPoolExecutor-0_0, started daemon 11352)>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\threading.py", line 917, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x0000021CA0992488>
+    └ <Thread(ThreadPoolExecutor-0_0, started daemon 11352)>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\threading.py", line 865, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(ThreadPoolExecutor-0_0, started daemon 11352)>
+    │    │        │    └ (<weakref at 0x0000021CA8B741D8; to 'ThreadPoolExecutor' at 0x0000021CA8B2ED30>, <_queue.SimpleQueue object at 0x0000021CA8B2...
+    │    │        └ <Thread(ThreadPoolExecutor-0_0, started daemon 11352)>
+    │    └ <function _worker at 0x0000021CA8B3C488>
+    └ <Thread(ThreadPoolExecutor-0_0, started daemon 11352)>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 80, in _worker
+    work_item.run()
+    │         └ <function _WorkItem.run at 0x0000021CA8B3C598>
+    └ <concurrent.futures.thread._WorkItem object at 0x0000021CA8B6C5F8>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+             │    │   │    │       │    └ {}
+             │    │   │    │       └ <concurrent.futures.thread._WorkItem object at 0x0000021CA8B6C5F8>
+             │    │   │    └ (<grpc._cython.cygrpc.RequestCallEvent object at 0x0000021CA8B74138>, <grpc._server._RPCState object at 0x0000021CA8B6C4A8>, ...
+             │    │   └ <concurrent.futures.thread._WorkItem object at 0x0000021CA8B6C5F8>
+             │    └ <function _unary_response_in_pool at 0x0000021CA8B666A8>
+             └ <concurrent.futures.thread._WorkItem object at 0x0000021CA8B6C5F8>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\grpc\_server.py", line 561, in _unary_response_in_pool
+    argument, request_deserializer)
+    │         └ <built-in method FromString of GeneratedProtocolMessageType object at 0x0000021CA7B23258>
+    └ priceMin: 50
+
+> File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\grpc\_server.py", line 443, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           │        │         └ <grpc._server._Context object at 0x0000021CA8B6C7B8>
+                           │        └ priceMin: 50
+                           │          
+                           └ <bound method GoodsServicer.GoodsList of <goods_srv.handler.goods.GoodsServicer object at 0x0000021CA8B2EE48>>
+
+  File "D:\mxshop\goods_srv\handler\goods.py", line 105, in GoodsList
+    rsp.total = goods.count()
+    │   │       │     └ <function SelectBase.count at 0x0000021CA875C378>
+    │   │       └ <peewee.ModelSelect object at 0x0000021CA8B6C860>
+    │   └ <field property 'GoodsListResponse.total'>
+    └
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\peewee.py", line 1918, in inner
+    return method(self, database, *args, **kwargs)
+           │      │     │          │       └ {}
+           │      │     │          └ ()
+           │      │     └ <goods_srv.model.models.ReconnectMySQLDatabase object at 0x0000021CA83F50F0>
+           │      └ <peewee.ModelSelect object at 0x0000021CA8B6C860>
+           └ <function SelectBase.count at 0x0000021CA875C2F0>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\peewee.py", line 2196, in count
+    return Select([clone], [fn.COUNT(SQL('1'))]).scalar(database)
+           │       │        │        │                  └ <goods_srv.model.models.ReconnectMySQLDatabase object at 0x0000021CA83F50F0>
+           │       │        │        └ <class 'peewee.SQL'>
+           │       │        └ <peewee.Function object at 0x0000021CA873FBE0>
+           │       └ <peewee.ModelSelect object at 0x0000021CA8B6C940>
+           └ <class 'peewee.Select'>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\peewee.py", line 1918, in inner
+    return method(self, database, *args, **kwargs)
+           │      │     │          │       └ {}
+           │      │     │          └ ()
+           │      │     └ <goods_srv.model.models.ReconnectMySQLDatabase object at 0x0000021CA83F50F0>
+           │      └ <peewee.Select object at 0x0000021CA8B2EBE0>
+           └ <function SelectBase.scalar at 0x0000021CA875C1E0>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\peewee.py", line 2181, in scalar
+    row = self.tuples().peek(database)
+          │    │             └ <goods_srv.model.models.ReconnectMySQLDatabase object at 0x0000021CA83F50F0>
+          │    └ <function Node.copy.<locals>.inner at 0x0000021CA8755EA0>
+          └ <peewee.Select object at 0x0000021CA8B2EBE0>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\peewee.py", line 1918, in inner
+    return method(self, database, *args, **kwargs)
+           │      │     │          │       └ {}
+           │      │     │          └ ()
+           │      │     └ <goods_srv.model.models.ReconnectMySQLDatabase object at 0x0000021CA83F50F0>
+           │      └ <peewee.Select object at 0x0000021CA8B6C9B0>
+           └ <function SelectBase.peek at 0x0000021CA8758F28>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\peewee.py", line 2168, in peek
+    rows = self.execute(database)[:n]
+           │    │       │          └ 1
+           │    │       └ <goods_srv.model.models.ReconnectMySQLDatabase object at 0x0000021CA83F50F0>
+           │    └ <function BaseQuery.execute at 0x0000021CA8757400>
+           └ <peewee.Select object at 0x0000021CA8B6C9B0>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\peewee.py", line 1918, in inner
+    return method(self, database, *args, **kwargs)
+           │      │     │          │       └ {}
+           │      │     │          └ ()
+           │      │     └ <goods_srv.model.models.ReconnectMySQLDatabase object at 0x0000021CA83F50F0>
+           │      └ <peewee.Select object at 0x0000021CA8B6C9B0>
+           └ <function BaseQuery.execute at 0x0000021CA8757378>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\peewee.py", line 1989, in execute
+    return self._execute(database)
+           │    │        └ <goods_srv.model.models.ReconnectMySQLDatabase object at 0x0000021CA83F50F0>
+           │    └ <function SelectBase._execute at 0x0000021CA8758EA0>
+           └ <peewee.Select object at 0x0000021CA8B6C9B0>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\peewee.py", line 2162, in _execute
+    cursor = database.execute(self)
+             │        │       └ <peewee.Select object at 0x0000021CA8B6C9B0>
+             │        └ <function Database.execute at 0x0000021CA876AEA0>
+             └ <goods_srv.model.models.ReconnectMySQLDatabase object at 0x0000021CA83F50F0>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\peewee.py", line 3190, in execute
+    return self.execute_sql(sql, params, commit=commit)
+           │    │           │    │              └ <object object at 0x0000021CA7710EE0>
+           │    │           │    └ [False, 50.0]
+           │    │           └ 'SELECT COUNT(1) FROM (SELECT 1 FROM `goods` AS `t1` WHERE ((`t1`.`is_deleted` = %s) AND (`t1`.`shop_price` >= %s))) AS `_wra...
+           │    └ <function ReconnectMixin.execute_sql at 0x0000021CA879BB70>
+           └ <goods_srv.model.models.ReconnectMySQLDatabase object at 0x0000021CA83F50F0>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\playhouse\shortcuts.py", line 254, in execute_sql
+    raise exc
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\playhouse\shortcuts.py", line 250, in execute_sql
+    return super(ReconnectMixin, self).execute_sql(sql, params, commit)
+                 │               │                 │    │       └ <object object at 0x0000021CA7710EE0>
+                 │               │                 │    └ [False, 50.0]
+                 │               │                 └ 'SELECT COUNT(1) FROM (SELECT 1 FROM `goods` AS `t1` WHERE ((`t1`.`is_deleted` = %s) AND (`t1`.`shop_price` >= %s))) AS `_wra...
+                 │               └ <goods_srv.model.models.ReconnectMySQLDatabase object at 0x0000021CA83F50F0>
+                 └ <class 'playhouse.shortcuts.ReconnectMixin'>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\peewee.py", line 3184, in execute_sql
+    self.commit()
+    │    └ <function Database.commit at 0x0000021CA876CAE8>
+    └ <goods_srv.model.models.ReconnectMySQLDatabase object at 0x0000021CA83F50F0>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\peewee.py", line 2950, in __exit__
+    reraise(new_type, new_type(exc_value, *exc_args), traceback)
+    │       │         │        │           │          └ <traceback object at 0x0000021CA8B736C8>
+    │       │         │        │           └ (1146, "Table 'mxshop-srv-goods.goods' doesn't exist")
+    │       │         │        └ ProgrammingError(1146, "Table 'mxshop-srv-goods.goods' doesn't exist")
+    │       │         └ <class 'peewee.ProgrammingError'>
+    │       └ <class 'peewee.ProgrammingError'>
+    └ <function reraise at 0x0000021CA848F1E0>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\peewee.py", line 191, in reraise
+    raise value.with_traceback(tb)
+          │     │              └ <traceback object at 0x0000021CA8B736C8>
+          │     └ <method 'with_traceback' of 'BaseException' objects>
+          └ ProgrammingError(1146, "Table 'mxshop-srv-goods.goods' doesn't exist")
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\peewee.py", line 3177, in execute_sql
+    cursor.execute(sql, params or ())
+    │      │       │    └ [False, 50.0]
+    │      │       └ 'SELECT COUNT(1) FROM (SELECT 1 FROM `goods` AS `t1` WHERE ((`t1`.`is_deleted` = %s) AND (`t1`.`shop_price` >= %s))) AS `_wra...
+    │      └ <function Cursor.execute at 0x0000021CA86F5D08>
+    └ <pymysql.cursors.Cursor object at 0x0000021CA8C8F6A0>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\pymysql\cursors.py", line 163, in execute
+    result = self._query(query)
+             │    │      └ 'SELECT COUNT(1) FROM (SELECT 1 FROM `goods` AS `t1` WHERE ((`t1`.`is_deleted` = 0) AND (`t1`.`shop_price` >= 50.0e0))) AS `_...
+             │    └ <function Cursor._query at 0x0000021CA870C1E0>
+             └ <pymysql.cursors.Cursor object at 0x0000021CA8C8F6A0>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\pymysql\cursors.py", line 321, in _query
+    conn.query(q)
+    │    │     └ 'SELECT COUNT(1) FROM (SELECT 1 FROM `goods` AS `t1` WHERE ((`t1`.`is_deleted` = 0) AND (`t1`.`shop_price` >= 50.0e0))) AS `_...
+    │    └ <function Connection.query at 0x0000021CA8736510>
+    └ <pymysql.connections.Connection object at 0x0000021CA8B6CC50>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\pymysql\connections.py", line 505, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+    │    │                │    │                             └ False
+    │    │                │    └ <function Connection._read_query_result at 0x0000021CA8736AE8>
+    │    │                └ <pymysql.connections.Connection object at 0x0000021CA8B6CC50>
+    │    └ 0
+    └ <pymysql.connections.Connection object at 0x0000021CA8B6CC50>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\pymysql\connections.py", line 724, in _read_query_result
+    result.read()
+    │      └ <function MySQLResult.read at 0x0000021CA87372F0>
+    └ <pymysql.connections.MySQLResult object at 0x0000021CA8C8F7F0>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\pymysql\connections.py", line 1069, in read
+    first_packet = self.connection._read_packet()
+                   │    └ None
+                   └ <pymysql.connections.MySQLResult object at 0x0000021CA8C8F7F0>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\pymysql\connections.py", line 676, in _read_packet
+    packet.raise_for_error()
+    │      └ <function MysqlPacket.raise_for_error at 0x0000021CA8722E18>
+    └ <pymysql.protocol.MysqlPacket object at 0x0000021CA8C8F748>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\pymysql\protocol.py", line 223, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    │   │                     │    └ <member '_data' of 'MysqlPacket' objects>
+    │   │                     └ <pymysql.protocol.MysqlPacket object at 0x0000021CA8C8F748>
+    │   └ <function raise_mysql_exception at 0x0000021CA848F6A8>
+    └ <module 'pymysql.err' from 'C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python37\\lib\\site-packages\\pymysql\\err.py'>
+
+  File "C:\Users\PC\AppData\Local\Programs\Python\Python37\lib\site-packages\pymysql\err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+          │          │      └ "Table 'mxshop-srv-goods.goods' doesn't exist"
+          │          └ 1146
+          └ <class 'pymysql.err.ProgrammingError'>
+
+peewee.ProgrammingError: (1146, "Table 'mxshop-srv-goods.goods' doesn't exist")
